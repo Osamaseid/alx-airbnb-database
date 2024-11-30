@@ -8,7 +8,7 @@ SELECT b.booking_id,
     u.email
 FROM Booking b
     INNER JOIN User u ON b.user_id = u.user_id;
--- Query: Retrieve all properties and their reviews, including properties that have no reviews
+-- Query 2: Retrieve all properties and their reviews, including properties that have no reviews using LEFT JOIN
 SELECT p.property_id,
     p.name AS property_name,
     p.description,
