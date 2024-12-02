@@ -1,46 +1,17 @@
-# Index Implementation and Performance Optimization for Airbnb Database
+-- database_index.sql
 
-This document describes the implementation of indexes in the Airbnb database to optimize query performance. We identify key columns that are frequently used in queries (e.g., in `WHERE`, `JOIN`, or `ORDER BY` clauses) and create indexes on those columns. The goal is to speed up query execution times, especially for large datasets.
+-- Create index on user_id in User table CREATE INDEX idx_user_id ON users(user_id);
 
-## High-Usage Columns Identified
+-- Create index on email in User table CREATE INDEX idx_email ON users(email);
 
-1. **User Table**:
+-- Create index on user_id in Booking table CREATE INDEX idx_booking_user_id ON bookings(user_id);
 
-   - `email`: The email column is frequently used for user lookups during login, registration, and account management. It is also unique, so indexing this column will speed up searches.
+-- Create index on property_id in Booking table CREATE INDEX idx_booking_property_id ON bookings(property_id);
 
-2. **Booking Table**:
+-- Create index on booking_date in Booking table CREATE INDEX idx_booking_date ON bookings(booking_date);
 
-   - `user_id`: The `user_id` column is often used to retrieve bookings made by a particular user. Indexing it will optimize these queries.
-   - `property_id`: This column is frequently used in queries to retrieve all bookings for a specific property. Indexing it speeds up property-based searches.
-   - `start_date`: The `start_date` column is used in queries to filter or sort bookings by their start dates. Indexing this will optimize date-based filtering and sorting.
+-- Create index on property_id in Property table CREATE INDEX idx_property_id ON properties(property_id);
 
-3. **Property Table**:
-   - `host_id`: The `host_id` column is used to find all properties belonging to a specific host. Indexing it will optimize host-based property retrieval.
-   - `location`: The `location` column is frequently used to filter properties based on geographical location. Indexing it will help with location-based filtering.
+-- Create index on location in Property table CREATE INDEX idx_location ON properties(location);
 
-## SQL Indexes Created
-
-The following indexes have been created to optimize performance:
-
-```sql
--- 1. Index on User table: email
-CREATE INDEX idx_user_email ON "User"(email);
-
--- 2. Index on Booking table: user_id
-CREATE INDEX idx_booking_user_id ON Booking(user_id);
-
--- 3. Index on Booking table: property_id
-CREATE INDEX idx_booking_property_id ON Booking(property_id);
-
--- 4. Index on Property table: host_id
-CREATE INDEX idx_property_host_id ON Property(host_id);
-
--- 5. Index on Booking table: start_date
-CREATE INDEX idx_booking_start_date ON Booking(start_date);
-
--- 6. Index on Property table: location
-CREATE INDEX idx_property_location ON Property(location);
-
-
-.
-```
+-- Create index on price in Property table CREATE INDEX idx_price ON properties(price);
