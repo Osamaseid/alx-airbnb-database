@@ -1,9 +1,7 @@
 # AirBnB Database Specification
 
 ## Entities and Attributes
-
 ### User
-
 - **user_id**: Primary Key, UUID, Indexed
 - **first_name**: VARCHAR, NOT NULL
 - **last_name**: VARCHAR, NOT NULL
